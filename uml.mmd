@@ -1,0 +1,67 @@
+classDiagram
+direction LR
+
+class League {
+  -String name
+  -List<Team> teams
+  -List<Game> schedule
+  +setSchedule()
+  +addGame()
+}
+
+class Team {
+  -String name
+  -double budget
+  -List<Game> schedule
+  -List<Player> players
+  +canAfford(amount) bool
+  +addPlayer(player)
+  +removePlayer(player)
+}
+
+class Player {
+  -String name
+  -double salary
+  -Team currentTeam
+  +requestTrade(targetTeam)
+  +changeSalary(newSalary)
+}
+
+class Commissioner {
+  -String name
+  +setSchedule(league)
+  +movePlayer(player, fromTeam, toTeam, fee)
+  +changePlayerSalary(player, newSalary)
+  +approveTrade(request)
+}
+
+class Game {
+  -Date date
+  -Boolean finished
+  -Int homeScore
+  -Int awayScore
+  -Team homeTeam
+  -Team awayTeam
+}
+
+class TradeRequest {
+  -Player player
+  -Team targetTeam
+  -String status
+  +submit()
+  +approve()
+  +reject()
+}
+
+League "1" o-- "*" Team
+League "1" o-- "*" Game
+Team "1" o-- "*" Player
+Game "*" --> "1" Team : homeTeam
+Game "*" --> "1" Team : awayTeam
+Player "*" --> "1" Team : currentTeam
+Player "1" --> "*" TradeRequest : creates
+TradeRequest "*" --> "1" Team : targetTeam
+Commissioner ..> League : manages
+Commissioner ..> Player : changes salary
+Commissioner ..> Team : moves players
+Commissioner ..> TradeRequest : approves
