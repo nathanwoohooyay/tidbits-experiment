@@ -15,7 +15,6 @@ public class TradeRequest {
 
     public void approve(){
         this.status = APPROVED;
-        this.targetTeam.addPlayer(this.player);
     }
     public void reject(){
         this.status = REJECTED;
