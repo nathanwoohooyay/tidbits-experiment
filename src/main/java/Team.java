@@ -38,7 +38,7 @@ public class Team {
 
         if (this.canAfford(player.salary)) {
             players.add(player);
-            budget += budgetUsage;
+            budgetUsage += player.salary;
 
         } else {
             throw new IllegalArgumentException("Can't afford player");
