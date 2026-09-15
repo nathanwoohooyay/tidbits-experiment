@@ -7,7 +7,7 @@ public class TradeRequest {
     private static final String APPROVED = "APPROVED";
 
 
-    public void TradeRequest(Player player, Team targetTeam, String status){
+    public TradeRequest(Player player, Team targetTeam, String status){
         this.player = player;
         this.targetTeam = targetTeam;
         this.status = status;

@@ -6,7 +6,6 @@ public class Team {
     private String name;
     private double budget;
     private double budgetUsage;
-    private List<Game> schedule;
     private List<Player> players;
 
     public Team(String name, double budget) {
@@ -14,7 +13,6 @@ public class Team {
         this.budget = budget;
         this.budgetUsage = 0;
 
-        schedule = new ArrayList<>();
         players = new ArrayList<>();
     }
 
@@ -23,7 +21,6 @@ public class Team {
         this.budget = budget;
         this.budgetUsage = budgetUsage;
 
-        this.schedule = games;
         this.players = players;
     }
 
