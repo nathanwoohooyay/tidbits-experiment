@@ -2,17 +2,22 @@ classDiagram
 direction LR
 
 class League {
-  -String name
+  -String leagueName
   -List<Team> teams
   -List<Game> schedule
+  +League(String leagueName)
+  +getLeagueName() String
+  +setLeagueName(String leagueName)
+  +getTeams() List~Team~
+  +addTeam(Team team)
+  +getSchedule() List~Game~
   +setSchedule()
-  +addGame()
+  +addGame(Game game)
 }
 
 class Team {
   -String name
   -double budget
-  -List<Game> schedule
   -List<Player> players
   +canAfford(amount) bool
   +addPlayer(player)
@@ -36,19 +41,24 @@ class Commissioner {
 }
 
 class Game {
-  -Date date
-  -Boolean finished
-  -Int homeScore
-  -Int awayScore
+  -int gameID
+  -Date gameDate
+  -boolean finished
+  -int homeScore
+  -int awayScore
   -Team homeTeam
   -Team awayTeam
+  +Game(int gameID, Date gameDate, Team homeTeam, Team awayTeam)
+  +getGameID() int
+  +finishGame()
+  +isFinished() bool
+  +getGameDetails() List~String~
 }
 
 class TradeRequest {
   -Player player
   -Team targetTeam
   -String status
-  +submit()
   +approve()
   +reject()
 }
